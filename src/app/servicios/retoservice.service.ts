@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class RetoserviceService {
 
-  public url = "http://192.168.0.129:8000"
+  public url = "http://192.168.1.37:8000"
 
   constructor(public httpClient: HttpClient) { }
 

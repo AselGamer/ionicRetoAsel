@@ -44,7 +44,6 @@ export class AppComponent implements AfterViewInit, OnInit{
   {
     await this.retoService.login(this.usuarioLogin).subscribe({
       next : value => {
-        //console.log(value);
         this.usuario = value;
         document.getElementById("errorLabel")!.innerHTML = "";
         this.guardarUsuario();
@@ -71,7 +70,10 @@ export class AppComponent implements AfterViewInit, OnInit{
   async getUsuario()
   {
     await this.storageService.get('usuario').then(value=>{
-      this.usuario = value;
+      if(value != null)
+      {
+        this.usuario = value;
+      }
     }); 
   }
 

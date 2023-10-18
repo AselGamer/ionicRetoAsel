@@ -34,7 +34,6 @@ export class InicioPage implements OnInit {
     await this.retoService.getCursosUsuario(this.usuario!.idusuario, this.usuario!.admin).subscribe({
       next : value => {
         this.cursos = value;
-        console.log(this.cursos);
       },
       error(err) {
         console.log(err)

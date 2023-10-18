@@ -30,7 +30,7 @@
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content">
-      <ion-modal [canDismiss]="canDismiss" class="modalWrapper" *ngIf="usuario == null || usuario.nombre == ''">
+      <ion-modal [canDismiss]="canDismiss" class="modalWrapper" *ngIf="usuario == null || usuario?.nombre == ''">
         <ng-template>
           <ion-header>
             <ion-toolbar>
