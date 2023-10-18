@@ -5,9 +5,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngIf="usuario == null">
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form (ngSubmit)="login()">
+        <ion-item>
+          <ion-label>Usuario</ion-label>
+          <ion-input type="text" name="usuario" [(ngModel)]="usuarioLogin.nombre"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Contraseña</ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="usuarioLogin.password"></ion-input>
+        </ion-item>
+    
+        <ion-button color="primary" type="submit">Iniciar Sesion</ion-button>
+        <ion-label id="errorLabel" color="danger"></ion-label>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="usuario != null">
+    <ion-card-header>
+      <ion-card-title color="danger">
+        Logout
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="danger" (click)="logout()">Logout</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

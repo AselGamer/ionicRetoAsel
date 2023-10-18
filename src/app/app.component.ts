@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements AfterViewInit, OnInit{
+
   public appPages = [
     { title: 'Inicio', url: '/inicio', icon: 'mail' },
     { title: 'Alta', url: '/alta', icon: 'paper-plane' },
@@ -74,6 +75,8 @@ export class AppComponent implements AfterViewInit, OnInit{
       {
         this.usuario = value;
         this.getUsuarioId(value.idusuario);
+        
+        this.appPages[2].title = 'Logout';
       }
     }); 
   }
