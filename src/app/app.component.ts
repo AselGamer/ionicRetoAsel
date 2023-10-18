@@ -46,10 +46,12 @@ export class AppComponent implements AfterViewInit, OnInit{
       next : value => {
         //console.log(value);
         this.usuario = value;
+        document.getElementById("errorLabel")!.innerHTML = "";
         this.guardarUsuario();
       },
       error(err) {
         console.log(err);
+        document.getElementById("errorLabel")!.innerHTML = "Usuario o contraseña incorrecta";
       },
     })
   }
@@ -62,6 +64,7 @@ export class AppComponent implements AfterViewInit, OnInit{
         this.canDismiss = true;
         this.modal.dismiss();
       }
+      window.location.reload();
     });
   }
 

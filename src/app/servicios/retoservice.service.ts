@@ -15,13 +15,13 @@ const httpOptions = {
 })
 export class RetoserviceService {
 
-  public url = "http://192.168.0.129:8001"
+  public url = "http://192.168.0.129:8000"
 
   constructor(public httpClient: HttpClient) { }
 
-  getCursos(): Observable<Curso[]>
+  getCursosUsuario($id: number, $admin: number): Observable<any>
   {
-    return this.httpClient.get<Curso[]>(this.url + '/cursos');
+    return this.httpClient.post<Array<any>>(this.url + '/usuarios/curso', {admin:$admin, idUsuario:$id});
   }
 
   login($usuarioLogin: UsuarioLogin): Observable<Usuario>

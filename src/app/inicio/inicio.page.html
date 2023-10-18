@@ -15,8 +15,15 @@
     <ion-card>
       <ion-list lines="none">
         <ion-item *ngFor="let item of cursos">
-          <ion-label>{{ item.nombre }}</ion-label>
+          <ion-label>
+            <h2>{{ item.nombreCurso }}</h2>
+            <p hidden id={{item.idusuariocurso}}>Nota del curso: {{ item.nota }}</p>
+          </ion-label>
+          <ion-button (click)="expandirCurso(item.idusuariocurso)">
+            <ion-icon name="arrow-down-outline"></ion-icon>
+          </ion-button>
         </ion-item>
+        <ion-title *ngIf="cursos.length == 0">No tienes cursos</ion-title>
       </ion-list>
     </ion-card>
   </ion-content>
