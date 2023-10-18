@@ -30,7 +30,7 @@ export class AppComponent implements AfterViewInit, OnInit{
   constructor(public retoService: RetoserviceService, public storageService: StorageService) {}
 
   ngOnInit() {
-    this.getUsuario()
+    this.SearchUsuario()
   }
 
   ngAfterViewInit() {
@@ -67,14 +67,22 @@ export class AppComponent implements AfterViewInit, OnInit{
     });
   }
 
-  async getUsuario()
+  async SearchUsuario()
   {
     await this.storageService.get('usuario').then(value=>{
       if(value != null)
       {
         this.usuario = value;
+        this.getUsuarioId(value.idusuario);
       }
     }); 
+  }
+
+  async getUsuarioId(id: number)
+  {
+    await this.retoService.getUsuarioId(id).subscribe({next : value => {
+      this.usuario = value;
+    }});
   }
 
   enviarLogin()

@@ -1,0 +1,77 @@
+.endcol
+{
+    display: flex;
+  justify-content: flex-end;
+}
+
+/* Custom select container */
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    border: 1px solid white; /* Use the primary color of your Ionic theme */
+    border-radius: 4px;
+    background: #fff;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--ion-color-dark); /* Use a dark color from your theme */
+    cursor: pointer;
+  }
+  
+  /* Arrow icon */
+  .custom-select:after {
+    content: '\25BC'; /* Down arrow character */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--ion-color-primary); /* Use the primary color of your Ionic theme */
+  }
+  
+  /* Hover and focus styles */
+  .custom-select:hover, .custom-select:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styled select element */
+  .custom-select select {
+    display: none;
+  }
+  
+  /* Selected option text */
+  .custom-select span {
+    font-weight: bold;
+  }
+  
+  /* Active (selected) option */
+  .custom-select select option:checked {
+    background-color: var(--ion-color-primary); /* Use the primary color of your Ionic theme */
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Dropdown options container */
+  .custom-select .custom-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    border: 1px solid var(--ion-color-primary); /* Use the primary color of your Ionic theme */
+    background: #fff;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
+  }
+  
+  /* Dropdown option items */
+  .custom-select .custom-options option {
+    padding: 10px;
+  }
+  
+  /* Show options on custom select click */
+  .custom-select:active .custom-options {
+    display: block;
+  }
+  

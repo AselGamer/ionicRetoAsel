@@ -17,7 +17,19 @@
         <ion-item *ngFor="let item of cursos">
           <ion-label>
             <h2>{{ item.nombreCurso }}</h2>
-            <p hidden id={{item.idusuariocurso}}>Nota del curso: {{ item.nota }}</p>
+            <p hidden id={{item.idusuariocurso}} *ngIf="usuario?.admin == 0">Nota del curso: {{ item.nota }}</p>
+            <ion-grid *ngFor="let usus of item.usuarios">
+              <ion-row>
+                  <ion-col size="6">
+                      <h2 class="ion-text-start">{{ usus }}</h2>
+                  </ion-col>
+                  <ion-col size="6" class="endcol">
+                    <select class="custom-select">
+                      <option *ngFor="let nota of item.notas">{{ nota }}</option>
+                    </select>
+                  </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-label>
           <ion-button (click)="expandirCurso(item.idusuariocurso)">
             <ion-icon name="arrow-down-outline"></ion-icon>
@@ -25,6 +37,7 @@
         </ion-item>
         <ion-title *ngIf="cursos.length == 0">No tienes cursos</ion-title>
       </ion-list>
+      
     </ion-card>
   </ion-content>
   

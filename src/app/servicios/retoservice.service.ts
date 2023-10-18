@@ -24,6 +24,11 @@ export class RetoserviceService {
     return this.httpClient.post<Array<any>>(this.url + '/usuarios/curso', {admin:$admin, idUsuario:$id});
   }
 
+  getUsuarioId($id: number): Observable<Usuario>
+  {
+    return this.httpClient.get<Usuario>(this.url + '/usuarios/'+$id);
+  }
+
   login($usuarioLogin: UsuarioLogin): Observable<Usuario>
   {
     return this.httpClient.post<Usuario>(this.url + '/usuarios/login', $usuarioLogin);

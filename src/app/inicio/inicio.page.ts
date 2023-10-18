@@ -18,6 +18,8 @@ export class InicioPage implements OnInit {
 
   public usuario: Usuario | null = null;
 
+  public not: any | null = null;
+
   constructor(public retoService: RetoserviceService, public storageService: StorageService) { }
 
   ngOnInit() {
@@ -31,14 +33,20 @@ export class InicioPage implements OnInit {
 
     if(this.usuario != null)
     {
-    await this.retoService.getCursosUsuario(this.usuario!.idusuario, this.usuario!.admin).subscribe({
-      next : value => {
-        this.cursos = value;
-      },
-      error(err) {
-        console.log(err)
-      }
-    });
+      await this.getUsuarioId(this.usuario.idusuario);
+      await this.retoService.getCursosUsuario(this.usuario!.idusuario, this.usuario!.admin).subscribe({
+        next : value => {
+          for (let i = 0; i < value.length; i++) {
+            value[i].usuarios = value[i].usuarios.split(',');
+            value[i].notas = value[i].notas.split(',');
+            console.log(value[i].notas);
+          }
+          this.cursos = value;
+        },
+        error(err) {
+          console.log(err)
+        }
+      });
     }
   }
 
@@ -52,6 +60,14 @@ export class InicioPage implements OnInit {
     {
       nota?.setAttribute("hidden",'');
     }
+  }
+
+  
+  async getUsuarioId(id: number)
+  {
+    await this.retoService.getUsuarioId(id).subscribe({next : value => {
+      this.usuario = value;
+    }});
   }
   
 }
