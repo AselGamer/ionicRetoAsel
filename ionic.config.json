@@ -1,0 +1,7 @@
+{
+  "name": "retoindividual",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

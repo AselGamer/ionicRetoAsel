@@ -1,0 +1,25 @@
+<div class="ion-page">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-content [fullscreen]="true">
+
+    <ion-card-header>
+      <ion-card-title>Cursos</ion-card-title>
+    </ion-card-header>
+    <ion-card>
+      <ion-list lines="none">
+        <ion-item *ngFor="let item of cursos">
+          <ion-label>{{ item.nombre }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </ion-content>
+  
+</ion-content>
+</div>
