@@ -41,7 +41,6 @@ export class InicioPage implements OnInit {
             for (let i = 0; i < value.length; i++) {
               value[i].usuarios = value[i].usuarios.split(',');
               value[i].notas = value[i].notas.split(',');
-              console.log(value[i].notas);
             }
           }
           
@@ -66,7 +65,18 @@ export class InicioPage implements OnInit {
     }
   }
 
-  
+  public expandirCursoUsuario(id: string)
+  {
+    const nota = document.getElementById(id);
+    if(nota?.getAttribute("hidden") != null)
+    {
+      nota?.removeAttribute("hidden");
+    } else 
+    {
+      nota?.setAttribute("hidden",'');
+    }
+  }
+
   async getUsuarioId(id: number)
   {
     await this.retoService.getUsuarioId(id).subscribe({next : value => {
