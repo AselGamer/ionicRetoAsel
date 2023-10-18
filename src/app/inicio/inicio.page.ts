@@ -36,11 +36,15 @@ export class InicioPage implements OnInit {
       await this.getUsuarioId(this.usuario.idusuario);
       await this.retoService.getCursosUsuario(this.usuario!.idusuario, this.usuario!.admin).subscribe({
         next : value => {
-          for (let i = 0; i < value.length; i++) {
-            value[i].usuarios = value[i].usuarios.split(',');
-            value[i].notas = value[i].notas.split(',');
-            console.log(value[i].notas);
+          if(this.usuario?.admin == 1)
+          {
+            for (let i = 0; i < value.length; i++) {
+              value[i].usuarios = value[i].usuarios.split(',');
+              value[i].notas = value[i].notas.split(',');
+              console.log(value[i].notas);
+            }
           }
+          
           this.cursos = value;
         },
         error(err) {
