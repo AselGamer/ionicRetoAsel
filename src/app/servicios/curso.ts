@@ -1,5 +1,5 @@
 export class Curso
 {
-    id: number = -1;
+    idcurso: number = -1;
     nombre: string = "";
 }

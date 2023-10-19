@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class RetoserviceService {
 
-  public url = "http://192.168.1.37:8000"
+  public url = "http://192.168.0.129:8000"
 
   constructor(public httpClient: HttpClient) { }
 
@@ -29,8 +29,33 @@ export class RetoserviceService {
     return this.httpClient.get<Usuario>(this.url + '/usuarios/'+$id);
   }
 
+  getAllUsuarios(): Observable<Usuario[]>
+  {
+    return this.httpClient.get<any>(this.url + '/usuarios/');
+  }
+
+  getAllCursos(): Observable<Curso[]>
+  {
+    return this.httpClient.get<any>(this.url + '/cursos/');
+  }
+
   login($usuarioLogin: UsuarioLogin): Observable<Usuario>
   {
     return this.httpClient.post<Usuario>(this.url + '/usuarios/login', $usuarioLogin);
+  }
+
+  insertUsuario($usuarioInsert: Usuario): Observable<Object>
+  {
+    return this.httpClient.post<Usuario>(this.url + '/usuarios/add', $usuarioInsert);
+  }
+
+  deleteUsuario($idUsuario: Number): Observable<Object>
+  {
+    return this.httpClient.delete<Usuario>(this.url + '/usuarios/delete/'+$idUsuario);
+  }
+
+  insertUsuarioIntoCurso($usuarioCurso: Object): Observable<Object>
+  {
+    return this.httpClient.post<Object>(this.url + '/usuarios/curso/add', $usuarioCurso);
   }
 }

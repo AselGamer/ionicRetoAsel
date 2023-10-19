@@ -19,12 +19,26 @@ export class LoginPage implements OnInit {
   constructor(public storageService: StorageService, public retoService: RetoserviceService, public route: Router ) { }
 
   ngOnInit() {
-    this.getUsuarioId();
+    this.getUsuarioFromStorage();
   }
 
-  async getUsuarioId()
+  async getUsuarioFromStorage()
   {
-    await this.storageService.get('usuario').then(value => {this.usuario = value});
+    await this.storageService.get('usuario').then(value => {if(value == null)
+      {
+        this.route.navigateByUrl('inicio', {replaceUrl :true})
+      }
+      else
+      {
+        this.usuario = value
+        this.getUsuarioFromBBDD();
+      }
+    });
+    
+  }
+
+  async getUsuarioFromBBDD()
+  {
     await this.retoService.getUsuarioId(this.usuario!.idusuario).subscribe({next : value => {
       this.usuario = value;
     }});

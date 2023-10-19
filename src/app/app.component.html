@@ -2,12 +2,11 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
+        <div *ngIf="usuario != null">
         <ion-list id="inbox-list">
-          <div *ngIf="usuario != null">
             <ion-list-header>{{ usuario.nombre }}</ion-list-header>
             <ion-note *ngIf="usuario.admin == 0">Estudiante</ion-note>
             <ion-note *ngIf="usuario.admin == 1">Administrador</ion-note>
-          </div>
           
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
@@ -25,6 +24,7 @@
             </div>
           </ion-menu-toggle>
         </ion-list>
+      </div>
         
         
       </ion-content>

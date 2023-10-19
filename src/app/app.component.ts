@@ -31,6 +31,7 @@ export class AppComponent implements AfterViewInit, OnInit{
   constructor(public retoService: RetoserviceService, public storageService: StorageService) {}
 
   ngOnInit() {
+    this.usuario.admin = 2;
     this.SearchUsuario()
   }
 

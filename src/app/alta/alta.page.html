@@ -5,9 +5,53 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Alta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Alta Usuario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="insertUsuario()">
+          <ion-label>Usuario</ion-label>
+          <ion-input type="text" name="usuario" [(ngModel)]="usuarioLogin.nombre"></ion-input>
+    
+          <ion-label>Contraseña</ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="usuarioLogin.password"></ion-input>
+    
+        <ion-button color="primary" type="submit">Crear Usuario</ion-button>
+        <ion-label id="errorLabel" color="danger"></ion-label>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Añadir Usuario a curso</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="insertUsuarioIntoCurso()">
+        <ion-select label="Seleccion usuario:" (ionChange)="usuChanged($event)">
+          <ion-select-option *ngFor="let usu of usuarios" value={{usu.idusuario}}>{{ usu.nombre }}</ion-select-option>
+        </ion-select>
+        <ion-select label="Seleccion curso:" (ionChange)="cursoChanged($event)">
+          <ion-select-option *ngFor="let cur of cursos" value={{cur.idcurso}}>{{ cur.nombre }}</ion-select-option>
+        </ion-select>
+        <ion-label>Nota</ion-label>
+        <ion-input type="text" name="nota" [(ngModel)]="nota" (keypress)="validateKey($event)" (input)="validateKeyUp($event)"></ion-input>
+        <ion-button color="primary" type="submit">Añadir al curso</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Baja usuario</ion-card-title>
+      <ion-card-subtitle color="danger">Elimina al usuario completamente</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="deleteUsuario()">
+        <ion-select label="Seleccione usuario:" (ionChange)="selectChanged($event)">
+          <ion-select-option *ngFor="let user of usuarios" value={{user.idusuario}} >{{ user.nombre }}</ion-select-option>
+        </ion-select>
+        <ion-button color="danger" type="submit">Eliminar Usuario</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
